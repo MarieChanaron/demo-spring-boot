@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruits list</title>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">All fruits</a></li>
+        <li><a href="add-fruit">Add fruit</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h2>Add fruit</h2>
+
+  <form action="#" th:action="@{/add-fruit}" th:object="${fruit}" method="post">
+    <label for="fruit-name">Saisir le nom du fruit</label>
+    <input type="text" name="" id="fruit-name" th:field="*{name}">
+    <input type="submit" value="Envoyer">
+  </form>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruits list</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">All fruits</a></li>
+                <li><a href="add-fruit">Add fruit</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <h2>List of fruits</h2>
+    <ul>
+        <li
+                th:each = "fruit: ${fruitList}"
+                th:text = "${fruit.name}">
+        </li>
+    </ul>
+</body>
+</html>

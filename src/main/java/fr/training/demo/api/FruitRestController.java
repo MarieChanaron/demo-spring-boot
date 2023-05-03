@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/fruits")
-public class FruitController {
+public class FruitRestController {
 
     @Autowired
     private FruitService fruitService;
 
-    @GetMapping // @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/all") // @RequestMapping(method = RequestMethod.GET)
     public List<Fruit> all() {
         return fruitService.fetchAllFruits();
     }
