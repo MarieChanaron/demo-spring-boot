@@ -17,9 +17,8 @@
 
   <h2>List of fruits</h2>
     <ul>
-        <li
-                th:each = "fruit: ${fruitList}"
-                th:text = "${fruit.name}">
+        <li th:each="fruit: ${fruitList}">
+            <a th:href="@{/fruit-details(id=*{fruit.id})}" th:text="${fruit.name}"></a>
         </li>
     </ul>
 </body>

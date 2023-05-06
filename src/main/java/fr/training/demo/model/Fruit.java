@@ -1,5 +1,7 @@
 package fr.training.demo.model;
 
+import java.util.Optional;
+
 public class Fruit {
 
     private int id;
@@ -7,6 +9,10 @@ public class Fruit {
 
 
     public Fruit() {}
+
+    public Fruit(int id) {
+        this.id = id;
+    }
 
     public Fruit(String name) {
         this.name = name;
@@ -31,5 +37,13 @@ public class Fruit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Fruit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

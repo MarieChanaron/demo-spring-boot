@@ -13,9 +13,6 @@ import java.util.Optional;
 @Service
 public class FruitService {
 
-    // Simulation de la base de données (vouée à disparaître)
-    //private static List<String> fruits = Arrays.asList("Kiwi", "Fraises", "Groseilles");
-
     @Autowired
     private FruitJdbcRepository repository;
 
@@ -27,11 +24,36 @@ public class FruitService {
         return repository.getAllFruits();
     }
 
-    public Optional<String> fetchFruit(int id) {
-        return repository.getFruitById(id);
+    public Optional<Fruit> fetchFruit(int id) {
+        Optional<String> fruitName = repository.getFruitById(id);
+        Fruit fruit = new Fruit();
+        if (fruitName.isPresent()) {
+            fruit.setId(id);
+            fruit.setName(fruitName.get());
+        }
+        return Optional.of(fruit);
     }
 
-    public void addFruit(Fruit fruit) {
-        repository.addFruit(fruit);
+    public Fruit addFruit(String name) {
+        Optional<Integer> id = repository.addFruit(new Fruit(name));
+        Fruit fruit = new Fruit();
+        if (id.isPresent()) {
+            fruit.setId(id.get());
+            fruit.setName(name);
+        }
+        return fruit;
+    }
+
+    public boolean deleteFruit(Fruit fruit) {
+        return repository.deleteFruit(fruit);
+    }
+
+    public Optional<Fruit> updateFruit(int id, String name) {
+        Optional<String> updatedName = repository.updateFruit(new Fruit(id, name));
+        Optional<Fruit> updatedFruit = Optional.of(new Fruit());
+        if (updatedName.isPresent()) {
+            updatedFruit = Optional.of(new Fruit(id, updatedName.get()));
+        }
+        return updatedFruit;
     }
 }
